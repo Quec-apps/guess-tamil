@@ -1,6 +1,6 @@
 var whiteSpace = 0;
 
-levels = localStorage.getItem("tamilActorLevel");
+levels = localStorage.getItem("tamilMovieLevel");
 total = parseInt(levelTotal);
 
 typedAns = '';
@@ -16,7 +16,7 @@ var FullImage = 0;
 
 function Levelfunct() {
 	levels++;
-	localStorage.setItem("tamilActorLevel", levels);
+	localStorage.setItem("tamilMovieLevel", levels);
 }
 
 $('.next').click(function () {
@@ -156,7 +156,7 @@ $(document).ready(function () {
 
 	$('.btn1').click(function () {
 		setInterval(() => {
-			coins = localStorage.getItem("coins");
+			coins = localStorage.getItem("tamilCoins");
 			$("#coins").html(coins);
 		}, 2000);
 		$(".buy-coins-con").fadeIn();

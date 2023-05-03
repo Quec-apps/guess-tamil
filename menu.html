@@ -226,18 +226,6 @@
 			width: 14vw;
 		}
 
-		.newAdded {
-			width: 90%;
-			background-color: #ecaaaa;
-			border-radius: 4px;
-			color: #3B0A01;
-			position: relative;
-			padding: 1vh 0;
-			text-align: center;
-			display: none;
-			animation: toast 600ms ease 1;
-		}
-
 		@keyframes toast {
 			0% {
 				transform: scale(1.1);
@@ -280,8 +268,19 @@
 		<div class="ct ct1">
 			<img src="res/image/movie2.png" class="ct-main-img">
 			<div class="ct-txt">MOVIE</div>
+			<div class="score"><span id="tamilMovieLevel">0</span></div>
+		</div>
+
+		<div class="ct ct2">
+			<img src="res/image/actor2.png" class="ct-main-img">
+			<div class="ct-txt">ACTOR</div>
 			<div class="score"><span id="tamilActorLevel">0</span></div>
-			<div class="newAdded"><span id="newLevel"></span> new levels added</div>
+		</div>
+
+		<div class="ct ct3">
+			<img src="res/image/actor2.png" class="ct-main-img">
+			<div class="ct-txt">ACTRESS</div>
+			<div class="score"><span id="tamilActressLevel">0</span></div>
 		</div>
 
 		<style>
@@ -322,6 +321,8 @@
 	</div><!--ct-bg closed-->
 	<audio id="button2" src="res/audio/button2.mp3"></audio>
 	<script src="movie/movie.js"></script>
+	<script src="actor/res/actor.js"></script>
+	<script src="actress/res/actress.js"></script>
 	<script>
 		setTimeout(function () { $('.coffee-img, .coins, .feedback, .special-bg').css({ opacity: '1' }); }, 200);
 		setTimeout(function () { $('.ct1').css({ 'transform': 'scale(1)', 'opacity': '1' }); }, 100);
@@ -336,7 +337,16 @@
 		}
 		tamilActorLevel = parseInt(localStorage.tamilActorLevel);
 		console.log(tamilActorLevel)
-		$("#actor-level").html(tamilActorLevel);
+		$("#tamilActorLevel").html(tamilActorLevel);
+
+		if (localStorage.tamilActressLevel == null) {
+			tamilActressLevel = 1;
+			localStorage.tamilActressLevel = tamilActressLevel;
+		}
+		tamilActressLevel = parseInt(localStorage.tamilActressLevel);
+		console.log(tamilActressLevel)
+		$("#tamilActressLevel").html(tamilActressLevel);
+
 
 		if (localStorage.songLevel == null) {
 			songLevel = 1;
@@ -386,12 +396,12 @@
 			setTimeout(() => { parent.location = "get_coins.html"; }, 700);
 		});
 
-		var levels = parseInt(localStorage.getItem("tamilActorLevel"));
-		if (localStorage.getItem("tamilActorLevel") === null) {
+		var levels = parseInt(localStorage.getItem("tamilMovieLevel"));
+		if (localStorage.getItem("tamilMovieLevel") === null) {
 			levels = 1;
-			document.getElementById("tamilActorLevel").innerHTML = "1";
-			parseInt(localStorage.setItem("tamilActorLevel", levels));
-		} else { document.getElementById("tamilActorLevel").innerHTML = levels; }
+			document.getElementById("tamilMovieLevel").innerHTML = "1";
+			parseInt(localStorage.setItem("tamilMovieLevel", levels));
+		} else { document.getElementById("tamilMovieLevel").innerHTML = levels; }
 
 		$('.ct1').click(function () {
 			if (levels <= levelTotal) {
@@ -402,13 +412,11 @@
 				}, 600);
 			}
 		});
-		console.log(tamilActorLevel);
-		console.log(tamilActorLevelTotal);
 
 		$(".ct2").click(function () {
 			if (tamilActorLevel <= tamilActorLevelTotal) {
 				setTimeout(function () {
-					parent.location = 'actor/html/actor_content.html';
+					parent.location = 'actor/actor_content.html';
 				}, 700);
 			} else {
 				setTimeout(function () {
@@ -417,11 +425,9 @@
 			}
 		});
 		$(".ct3").click(function () {
-			console.log('songLevel', songLevel)
-			console.log('songLevels_total', songLevelTotal)
-			if (songLevel <= songLevelTotal) {
+			if (tamilActressLevel <= tamilActressLevelTotal) {
 				setTimeout(function () {
-					parent.location = 'song/song_content.html';
+					parent.location = 'actress/actor_content.html';
 				}, 700);
 			} else {
 				setTimeout(function () {
@@ -429,6 +435,20 @@
 				}, 600);
 			}
 		});
+
+		// $(".ct4").click(function () {
+		// 	console.log('songLevel', songLevel)
+		// 	console.log('songLevels_total', songLevelTotal)
+		// 	if (songLevel <= songLevelTotal) {
+		// 		setTimeout(function () {
+		// 			parent.location = 'song/song_content.html';
+		// 		}, 700);
+		// 	} else {
+		// 		setTimeout(function () {
+		// 			parent.location = 'wait_update.html';
+		// 		}, 600);
+		// 	}
+		// });
 
 		$('.coffee-img').click(function () {
 			setTimeout(() => {

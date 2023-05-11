@@ -29,6 +29,7 @@
 			-khtml-user-select: none;
 			-moz-user-select: none;
 			-ms-user-select: none;
+			font-weight: 400;
 		}
 
 		.coffee-bg {
@@ -108,13 +109,13 @@
 		.ct {
 			width: 95vw;
 			max-width: 500PX;
-			height: 120px;
+			height: 95px;
 			border-radius: 10px;
 			transition: all .3s;
 			display: flex;
 			flex-wrap: wrap;
-			justify-content: center;
-			align-content: center;
+			justify-content: space-around;
+			align-items: center;
 			margin-top: 2vh;
 			transform: scale(1.2);
 			opacity: 0;
@@ -134,9 +135,6 @@
 		.ct-main-img {
 			width: 60px;
 			height: 60px;
-			position: absolute;
-			top: 20%;
-			left: 10%;
 		}
 
 		.ct-img {
@@ -147,18 +145,17 @@
 		}
 
 		.ct-txt {
-			width: 100%;
+			width: 100px;
+			height: fit-content;
 			text-align: center;
-			font-size: large;
+			font-size: x-large;
 			position: relative;
 		}
 
 		.score {
-			width: 100%;
+			height: fit-content;
 			text-align: center;
-			padding-top: 4vw;
 			font-size: x-large;
-			position: relative;
 		}
 
 		.mid {
@@ -181,9 +178,11 @@
 			transition: all .6s ease;
 			opacity: 0;
 			margin-left: 4vw;
-		} .coins:active {
+		}
+
+		.coins:active {
 			transition: none;
-			opacity: .5!important;
+			opacity: .5 !important;
 		}
 
 		.add-img {
@@ -283,6 +282,12 @@
 			<div class="score"><span id="tamilActressLevel">0</span></div>
 		</div>
 
+		<div class="ct ct4">
+			<img src="res/image/song.webp" class="ct-main-img">
+			<div class="ct-txt">SONGS</div>
+			<div class="score"><span id="tamilSongLevel">0</span></div>
+		</div>
+
 		<style>
 			.ad-bg {
 				width: 98vw;
@@ -323,6 +328,7 @@
 	<script src="movie/movie.js"></script>
 	<script src="actor/res/actor.js"></script>
 	<script src="actress/res/actress.js"></script>
+	<script src="song/res/song.js"></script>
 	<script>
 		setTimeout(function () { $('.coffee-img, .coins, .feedback, .special-bg').css({ opacity: '1' }); }, 200);
 		setTimeout(function () { $('.ct1').css({ 'transform': 'scale(1)', 'opacity': '1' }); }, 100);
@@ -347,14 +353,13 @@
 		console.log(tamilActressLevel)
 		$("#tamilActressLevel").html(tamilActressLevel);
 
-
-		if (localStorage.songLevel == null) {
-			songLevel = 1;
-			localStorage.songLevel = songLevel;
+		if (localStorage.tamilSongLevel == null) {
+			tamilSongLevel = 1;
+			localStorage.tamilSongLevel = tamilSongLevel;
 		}
-		songLevel = parseInt(localStorage.songLevel);
-		console.log(songLevel)
-		$("#song-level").html(songLevel);
+		tamilSongLevel = parseInt(localStorage.tamilSongLevel);
+		console.log(tamilSongLevel)
+		$("#tamilSongLevel").html(tamilSongLevel);
 
 		function FullHide() {
 			setTimeout(function () { $('.coffee-img, .coins, .feedback, .rate-bg, .buy-bg, .ad-bg, .special-bg, .ad-class').css({ opacity: '0' }); }, 200);
@@ -405,7 +410,9 @@
 
 		$('.ct1').click(function () {
 			if (levels <= levelTotal) {
-				parent.location = 'movie/movie.html';
+				setTimeout(function () {
+					parent.location = 'movie/movie.html';
+				}, 600);
 			} else {
 				setTimeout(function () {
 					parent.location = 'wait_update.html';
@@ -436,19 +443,17 @@
 			}
 		});
 
-		// $(".ct4").click(function () {
-		// 	console.log('songLevel', songLevel)
-		// 	console.log('songLevels_total', songLevelTotal)
-		// 	if (songLevel <= songLevelTotal) {
-		// 		setTimeout(function () {
-		// 			parent.location = 'song/song_content.html';
-		// 		}, 700);
-		// 	} else {
-		// 		setTimeout(function () {
-		// 			parent.location = 'wait_update.html';
-		// 		}, 600);
-		// 	}
-		// });
+		$(".ct4").click(function () {
+			if (tamilSongLevel <= tamilSongLevelTotal) {
+				setTimeout(function () {
+					parent.location = 'song/song_content.html';
+				}, 700);
+			} else {
+				setTimeout(function () {
+					parent.location = 'wait_update.html';
+				}, 600);
+			}
+		});
 
 		$('.coffee-img').click(function () {
 			setTimeout(() => {

@@ -86,6 +86,7 @@
         .bottom {
             width: 100vw;
             height: 90vh;
+            overflow-y: scroll;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -159,7 +160,7 @@
         }
     </style>
     <div class="bottom">
-        <div class="ct ct1" style="display:none;">
+        <div class="ct ct1">
             <div class="ct-sub-bg">
                 <img src="res/image/coins.webp" class="hint-img"> + 5
             </div>
@@ -190,6 +191,85 @@
                 <div class="buy-ct">Buy</div>
             </div>
         </div>
+
+        <style>
+            .divider-bg {
+                width: 100vw;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 30px;
+            }
+
+            .divider-bar {
+                width: 20%;
+                height: 1px;
+                background-color: #24282c;
+            }
+
+            .divider-ct {
+                margin: 0 10px;
+            }
+
+            .app-img {
+                width: 50px;
+                margin-left: 10px;
+            }
+
+            .app-name {
+                width: 40%;
+                font-size: medium;
+                text-align: center;
+                color: white;
+            }
+
+            .empty {
+                width: 100vw;
+                height: 40px;
+            }
+        </style>
+        <div class="divider-bg">
+            <div class="divider-bar"></div>
+            <div class="divider-ct">More apps</div>
+            <div class="divider-bar"></div>
+        </div>
+        <div class="ct">
+            <img src="res/image/app/eng.png" class="app-img">
+            <div class="app-name">Guess English Songs</div>
+            <div class="buy active">
+                <div class="buy-ct"
+                    onclick='parent.location=`https://play.google.com/store/apps/details?id=com.quec.english`'>
+                    Install</div>
+            </div>
+        </div>
+        <div class="ct">
+            <img src="res/image/app/anime.png" class="app-img">
+            <div class="app-name">Guess Anime</div>
+            <div class="buy active">
+                <div class="buy-ct"
+                    onclick='parent.location=`https://play.google.com/store/apps/details?id=com.quec.anime.guess`'>
+                    Install</div>
+            </div>
+        </div>
+        <div class="ct">
+            <img src="res/image/app/bollywood.png" class="app-img">
+            <div class="app-name">Guess Bollywood Movie</div>
+            <div class="buy active">
+                <div class="buy-ct"
+                    onclick='parent.location=`https://play.google.com/store/apps/details?id=com.quec.guess.bollywood`'>
+                    Install</div>
+            </div>
+        </div>
+        <div class="ct">
+            <img src="res/image/app/malayalam.png" class="app-img">
+            <div class="app-name">Guess Malayalam Movie</div>
+            <div class="buy active">
+                <div class="buy-ct"
+                    onclick='parent.location=`https://play.google.com/store/apps/details?id=com.quec.guess.malayalam`'>
+                    Install</div>
+            </div>
+        </div>
+        <div class="empty"></div>
     </div>
 
     <script>

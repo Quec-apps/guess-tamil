@@ -130,7 +130,7 @@ $(document).ready(function () {
 			document.getElementById("win").play();
 			coins -= 10;
 			levels++; localStorage.tamilActorLevel = levels;
-			localStorage.coins = coins;
+			localStorage.tamilCoins = coins;
 			$("#coins").html(coins);
 			$('.finish-con').css({ display: 'flex' });
 		}
@@ -227,10 +227,10 @@ $(document).ready(function () {
 		setTimeout(() => {
 			$('.game-over-con').css({ display: 'flex' });
 			if (coins >= 4) {
-				coins -= 4; localStorage.coins = coins;
+				coins -= 4; localStorage.tamilCoins = coins;
 				$("#coins").html(coins);
 			} else if (coins > 0) {
-				coins = 0; localStorage.coins = coins;
+				coins = 0; localStorage.tamilCoins = coins;
 				$("#coins").html(coins);
 			}
 		}, 400);

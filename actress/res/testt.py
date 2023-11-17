@@ -126,6 +126,7 @@ _x = """Samantha
  Pooja Ramachandran
  Pranitha Subhash
  Ivana
+ Rich Gangopadhyay
  Raveena Ravi
  Reba Monica John
  Devadarshini
@@ -138,7 +139,6 @@ _x = """Samantha
  Yashika Aannand
  Anu Emmanuel
  Kayal Anandi
- Iniya
  Namiitha Pramod
  Meetha Raghunath
  Lakshmi Priya Chandramouli
@@ -197,7 +197,7 @@ _x = """Samantha
  Sunaina
  Sandhya
  Sija Rose
- Rich Gangopadhyay"""
+ Iniya"""
 
 splited = _x.split("\n")
 

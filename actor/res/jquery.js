@@ -1,7 +1,7 @@
 levels = localStorage.tamilActorLevel
 total = parseInt(tamilActorLevelTotal);
 
-var coins = localStorage.getItem("tamilCoins");
+var coins = parseInt(localStorage.getItem("tamilCoins"));
 document.getElementById("coins").innerHTML = coins;
 
 var FullImage = 0;
@@ -49,15 +49,50 @@ $(".main-img").on("load", function () {
 	$(".main-img").fadeIn();
 });
 
+tile_cost = 1;
+
+if (localStorage.tamActorTileList == null) {
+	tile_list = []
+	localStorage.tamActorTileList = JSON.stringify(tile_list);
+}
+
+tile_list = JSON.parse(localStorage.tamActorTileList);
+console.log(tile_list);
+
+function TileClick(id_) {
+	if (coins >= tile_cost) {
+		$('#tile'+id_).css({visibility:'hidden'});
+		tile_list.push(id_)
+		localStorage.tamActorTileList = JSON.stringify(tile_list);
+		console.log('tileList', tile_list)
+		coins-=tile_cost;
+		$("#coins").text(coins);
+		localStorage.setItem('tamilCoins', coins);
+	}
+}
+
 $(document).ready(function () {
 	vhHeight = $(window).outerHeight();
 	fullHeight = $(".full").outerHeight();
 	calcHeight = vhHeight - fullHeight;
 	$(".letters-bg").css({ height: '' + (calcHeight - 10) });
 
+	function TileAppend() {
+		$(".tile").off();
+
+		for (i=0; i<=50; i++) {
+			$(".tile-bg").append(`<div id="tile${i}" onclick="TileClick(${i})" class="tile"><div class="tile-coin-bg"><img src="../res/image/coins.webp" class="tile-coin-img">1</div></div>`)
+		}
+
+		for (i in tile_list) {
+			$('#tile'+tile_list[i]).css({visibility:'hidden'});
+		}
+	}
+
 	function Append() {
 		$(".main-img").fadeOut();
 		$(".loading-txt").fadeIn();
+		$(".tile").css({visibility:'visible'});
 
 		interact = true;
 		$("#main-levels").text(levels);
@@ -67,6 +102,23 @@ $(document).ready(function () {
 		$("#noans3").text(window[`noans3${levels}`]);
 		$("#noans4").text(window[`noans4${levels}`]);
 		$(".main-img").attr('src', `images/${levels}.webp`);
+
+		img = $(".main-img");
+
+        img.on('load', function() {
+			// Get image width and height
+			width = img.width();
+			height = img.height();
+
+			$(".tile-bg").css({width:width, height:height});
+
+			TileAppend();
+
+			// Display the dimensions
+			console.log("Width: " + width + "px");
+			console.log("Height: " + height + "px");
+		});
+
 		setTimeout(() => {
 			$("#ans-txt").html(window[`ans${levels}`]);
 		}, 400);
@@ -120,7 +172,9 @@ $(document).ready(function () {
 	});
 
 	$('.skip-img').click(function () {
-		if (coins < 10) {
+		skip_cost = 10;
+
+		if (coins < skip_cost) {
 			document.getElementById("button3").play();
 			$('.out-coins-con').css({ display: 'flex' });
 			setTimeout(function () { $('.hint-bg-bg').fadeOut(); }, 100);
@@ -128,11 +182,17 @@ $(document).ready(function () {
 		} else {
 
 			document.getElementById("win").play();
-			coins -= 10;
+			coins -= skip_cost;
 			levels++; localStorage.tamilActorLevel = levels;
 			localStorage.tamilCoins = coins;
 			$("#coins").html(coins);
-			$('.finish-con').css({ display: 'flex' });
+			setTimeout(() => {
+				$('.finish-con').css({ display: 'flex' });
+			}, 400);
+
+			$(".tile").css({visibility:'hidden'});
+			tile_list = []
+			localStorage.tamActorTileList = JSON.stringify(tile_list);
 		}
 	});
 
@@ -196,19 +256,27 @@ $(document).ready(function () {
 
 	interact = true;
 	$("#ans").click(function () {
+		reward_coin = 5;
+
 		if (!interact)
 			return
 
 		interact = false;
 		console.log("Correct");
+
+		$(".tile").css({visibility:'hidden'});
+		tile_list = []
+		localStorage.tamActorTileList = JSON.stringify(tile_list);
+
 		$(this).css({ background: 'green' });
 		document.getElementById("finish").play();
 		giveReward = Math.floor((Math.random() * 3) + 1);
 		setTimeout(() => {
-			if (giveReward == 1) {
+			if (giveReward != 1) {
 				//give one coin
+				coins+= parseInt(reward_coin); localStorage.setItem("tamilCoins", coins);
+				$('.coin-txt2').text(reward_coin);
 				$('.score2').css({visibility:'visible'});
-				coins++; localStorage.setItem("tamilCoins", coins);
 				$("#coins").html(coins);
 			}
 			$('.finish-con').css({ display: 'flex' });
@@ -257,16 +325,16 @@ $(document).ready(function () {
 
 });
 
-smallImage = true;
-$(".main-img").click(function () {
-	if (smallImage) {
-		smallImage = false;
-		$('.main-img').css({ maxWidth: '100vw', maxHeight: '50vh' });
-	} else {
-		smallImage = true;
-		$(".main-img").css({ maxWidth: '85vw', maxHeight: '30vh' });
-	}
-});
+// smallImage = true;
+// $(".main-img").click(function () {
+// 	if (smallImage) {
+// 		smallImage = false;
+// 		$('.main-img').css({ maxWidth: '100vw', maxHeight: '50vh' });
+// 	} else {
+// 		smallImage = true;
+// 		$(".main-img").css({ maxWidth: '85vw', maxHeight: '30vh' });
+// 	}
+// });
 
 if (localStorage.Inter == 'NaN' || localStorage.Inter == NaN) {
 	localStorage.Inter = 1;

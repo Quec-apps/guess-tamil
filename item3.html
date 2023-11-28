@@ -5,8 +5,10 @@
 </head>
 <body>
 <script>
-var coins = parseInt(localStorage.getItem("tamilCoins"));
-coins += 150; localStorage.setItem("tamilCoins", coins);
+var coins = parseInt(localStorage.tamilCoins);
+coins += 150; localStorage.tamilCoins = coins;
+bought_coins = parseInt(localStorage.tamil_bought_coins)
+bought_coins+=150; localStorage.tamil_bought_coins = bought_coins;
 </script>
 </body>
 </html>

@@ -1,12 +1,12 @@
 b = 0;
 
 b++;
-window["q"+b] = "  Mainaru Vetti Katti"; //Ans1
-window["q1"+b] = "Dippam Dappam";
-window["q2"+b] = "Paalam";
-window["q3"+b] = "Aathi";
-window["q4"+b] = "Thozhi";
-window["li"+b] = ' https://youtu.be/gBzgpoq86U8';
+window["q"+b] = " Mersalaayitten"; //Ans1
+window["q1"+b] = "Dumm Dumm";
+window["q2"+b] = "Maranthana";
+window["q3"+b] = "Saami Saami";
+window["q4"+b] = "Yaar Azhaippadhu";
+window["li"+b] = ' https://youtu.be/uI_ug1H6u0k';
 
 b++;
 window["q"+b] = " Jimikki Ponnu"; //Ans2
@@ -1265,12 +1265,12 @@ window["q4"+b] = "Irumbile Oru Idhaiyam";
 window["li"+b] = ' https://youtu.be/gYZjp0RNewc';
 
 b++;
-window["q"+b] = " Mersalaayitten"; //Ans159
-window["q1"+b] = "Dumm Dumm";
-window["q2"+b] = "Maranthana";
-window["q3"+b] = "Saami Saami";
-window["q4"+b] = "Yaar Azhaippadhu";
-window["li"+b] = ' https://youtu.be/uI_ug1H6u0k';
+window["q"+b] = "Mainaru Vetti Katti"; //Ans159
+window["q1"+b] = "Dippam Dappam";
+window["q2"+b] = "Paalam";
+window["q3"+b] = "Aathi";
+window["q4"+b] = "Thozhi";
+window["li"+b] = ' https://youtu.be/gBzgpoq86U8';
 
 b++;
 window["q"+b] = " Mun Andhi"; //Ans160
